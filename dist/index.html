@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Correções</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body class="container">
+
+    <h1 class="text-center">Correções</h1>
+
+    <div id="mensagemView"></div>
+
+    <form class="form">
+        <div class="form-row">
+            <div class="form-group col-md-12">          
+                <label for="data">Data</label>
+                <div class="input-group">
+                    <input type="date" id="data" class="form-control" required autofocus/>
+                    <div class="input-group-append">
+                        <button type="button" id="hoje" class="btn btn-outline-secondary" >Hoje</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="nome-aluno">Nome</label>
+                <input type="text" id="nome-aluno" placeholder="Nome do aluno" class="form-control" required/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">          
+                <label for="curso">Curso</label>
+                <select class="form-control" id="curso" required>
+                    <option>Unreal Engine</option>
+                    <option>Backend Java</option>
+                    <option>Javascript</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="num-modulo">Número do módulo</label>
+                <input type="number" min="1" step="1" id="num-modulo" class="form-control" value="1" required/>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="tipo">Tipo</label>
+                <select class="form-control" id="tipo" required>
+                    <option>Tarefa do módulo</option>
+                    <option>Pergunta na tarefa do módulo</option>
+                    <option>Fórum (Messages)</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="valor">Valor</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text">R$</span>
+                    </div>
+                    <input id="valor" type="number" class="form-control"  min="1" step="1" value="15" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">   
+                <label for="resposta">Resposta</label>
+                <textarea id="resposta" cols="40" rows="5" class="form-control" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">   
+                <label for="observacao">Observação</label>
+                <input id="observacao" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Incluir</button>
+    </form>
+    <br>
+    <br>
+    <div id="correcoesView"></div>
+    
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

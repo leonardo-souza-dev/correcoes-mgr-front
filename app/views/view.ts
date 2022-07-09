@@ -1,0 +1,31 @@
+export abstract class View<T> {
+    
+    protected elemento: HTMLElement
+    private escapar: boolean = false
+
+    constructor(seletor: string, escapar?: boolean){
+        const elemento = document.querySelector(seletor)
+
+        if (elemento){
+            this.elemento = elemento as HTMLElement
+        } else {
+            throw Error(`Seletor ${seletor} nao existe no DOM. Verifique `)
+        }
+
+        if (escapar) {
+            this.escapar = escapar
+        }
+    }
+
+    public update(model: T): void {
+        let template = this.template(model)
+        
+        if (this.escapar) {
+            template = template.replace(/<script>[\s\S]*?<\/script>/, '')
+        }
+        this.elemento.innerHTML = template
+    }
+    
+    //só pais e filhos podem ter acesso a esse metodo
+    protected abstract template(model: T): string  
+}
