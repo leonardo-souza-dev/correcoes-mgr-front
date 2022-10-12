@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Correcao } from "../models/correcao.js";
+import { CorrecaoValor } from "../models/correcaoValor.js";
 export class CorrecoesService {
     inserir(correcao) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -24,8 +24,8 @@ export class CorrecoesService {
                 credentials: "include"
             };
             const res = yield fetch('https://localhost:7223/inserir-correcao', init);
-            const correcaoInserida = yield res.json();
-            return correcaoInserida;
+            const correcaoValorInserida = yield res.json();
+            return correcaoValorInserida;
         });
     }
     obterTodas() {
@@ -42,7 +42,7 @@ export class CorrecoesService {
             const res = yield fetch('https://localhost:7223/correcoes', init);
             const dados = yield res.json();
             return dados.map(dado => {
-                return new Correcao(new Date(dado.data), dado.curso, dado.nomeAluno, dado.numModulo, dado.tipo, dado.resposta, dado.valor, dado.observacao);
+                return new CorrecaoValor(new Date(dado.data), dado.curso, dado.nomeAluno, dado.numModulo, dado.tipo, dado.resposta, dado.observacao, dado.valor);
             });
         });
     }

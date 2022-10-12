@@ -1,18 +1,16 @@
 export class Correcao {
-    constructor(data, curso, nomeAluno, numModulo, tipo, resposta, valor, observacao) {
+    constructor(data, curso, nomeAluno, numModulo, tipo, resposta, observacao) {
         this.data = data;
         this.curso = curso;
         this.nomeAluno = nomeAluno;
         this.numModulo = numModulo;
         this.tipo = tipo;
         this.resposta = resposta;
-        this.valor = valor;
         this.observacao = observacao;
     }
-    static criaDe(dataString, cursoString, nomeAlunoString, numModuloString, tipoString, respostaString, valorString, observacaoString) {
+    static criaDe(dataString, cursoString, nomeAlunoString, numModuloString, tipoString, respostaString, observacaoString) {
         const data = new Date(dataString.replace(/-/g, ','));
-        const valor = parseInt(valorString);
         const numModulo = parseFloat(numModuloString);
-        return new Correcao(data, cursoString, nomeAlunoString, numModulo, tipoString, respostaString, valor, observacaoString);
+        return new Correcao(data, cursoString, nomeAlunoString, numModulo, tipoString, respostaString, observacaoString);
     }
 }

@@ -1,9 +1,10 @@
 import { Correcoes } from "../models/correcoes.js"
+import { CorrecoesValor } from "../models/correcoesValor.js"
 import { View } from "./view.js"
 
-export class CorrecoesView extends View<Correcoes> {
+export class CorrecoesView extends View<CorrecoesValor> {
 
-    protected template(model: Correcoes): string {
+    protected template(model: CorrecoesValor): string {
         return `
         <div class="table-responsive-sm">
             <table class="table table-hover table-bordered">

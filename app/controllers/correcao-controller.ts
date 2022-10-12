@@ -1,6 +1,7 @@
 import { DiasDaSemana } from "../enums/dias-da-semana.js"
 import { Correcao } from "../models/correcao.js"
-import { Correcoes } from "../models/correcoes.js"
+import { CorrecaoValor } from "../models/correcaoValor.js"
+import { CorrecoesValor } from "../models/correcoesValor.js"
 import { MensagemView } from "../views/mensagem-view.js"
 import { CorrecoesView } from "../views/correcoes-view.js"
 import { CorrecoesService } from "../services/correcoes-service.js"
@@ -15,7 +16,7 @@ export class CorrecaoController {
     private inputValor: HTMLInputElement
     private inputObservacao: HTMLInputElement
 
-    private correcoes = new Correcoes()
+    private correcoesValor = new CorrecoesValor()
     private correcoesView = new CorrecoesView('#correcoesView', true)
     private mensagemView = new MensagemView('#mensagemView')
 
@@ -31,7 +32,7 @@ export class CorrecaoController {
         this.inputValor = <HTMLInputElement>document.querySelector('#valor')
         this.inputObservacao = <HTMLInputElement>document.querySelector('#observacao')
 
-        this.correcoesView.update(this.correcoes)
+        this.correcoesView.update(this.correcoesValor)
     }
 
     public adiciona(): void{
@@ -41,28 +42,25 @@ export class CorrecaoController {
                                          this.inputNumModulo.value, 
                                          this.inputTipo.value, 
                                          this.inputResposta.value, 
-                                         this.inputValor.value, 
                                          this.inputObservacao.value)
 
         this.correcaoService.inserir(correcao)
             .then(correcaoInserida  => { 
                 console.log(correcaoInserida)
-                const correcaoInseridaType = <Correcao>correcaoInserida 
-                this.correcoes.adiciona(correcaoInseridaType)
+                const correcaoInseridaType = <CorrecaoValor>correcaoInserida 
+                this.correcoesValor.adiciona(correcaoInseridaType)
                 this.limparFormulario()    
                 this.atualizaView()
             })
-
-
     }
 
     public obterCorrecoes(): void {
         this.correcaoService.obterTodas()
             .then(correcoes => {
                 for (let c of correcoes){
-                    this.correcoes.adiciona(c)
+                    this.correcoesValor.adiciona(c)
                 }
-                this.correcoesView.update(this.correcoes)
+                this.correcoesView.update(this.correcoesValor)
             })
     }
 
@@ -89,7 +87,6 @@ export class CorrecaoController {
         this.inputCurso.value = ''
         this.inputNumModulo.value = ''
         this.inputTipo.value = ''
-        this.inputValor.value = ''
         this.inputResposta.value = ''
         this.inputObservacao.value = ''
 
@@ -97,7 +94,7 @@ export class CorrecaoController {
     }
 
     private atualizaView(): void {
-        this.correcoesView.update(this.correcoes)
+        this.correcoesView.update(this.correcoesValor)
         this.mensagemView.update("Correção adicionada com sucesso!")
     }
 }

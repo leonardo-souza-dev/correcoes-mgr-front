@@ -1,12 +1,12 @@
 import { DiasDaSemana } from "../enums/dias-da-semana.js";
 import { Correcao } from "../models/correcao.js";
-import { Correcoes } from "../models/correcoes.js";
+import { CorrecoesValor } from "../models/correcoesValor.js";
 import { MensagemView } from "../views/mensagem-view.js";
 import { CorrecoesView } from "../views/correcoes-view.js";
 import { CorrecoesService } from "../services/correcoes-service.js";
 export class CorrecaoController {
     constructor() {
-        this.correcoes = new Correcoes();
+        this.correcoesValor = new CorrecoesValor();
         this.correcoesView = new CorrecoesView('#correcoesView', true);
         this.mensagemView = new MensagemView('#mensagemView');
         this.correcaoService = new CorrecoesService();
@@ -18,15 +18,15 @@ export class CorrecaoController {
         this.inputResposta = document.querySelector('#resposta');
         this.inputValor = document.querySelector('#valor');
         this.inputObservacao = document.querySelector('#observacao');
-        this.correcoesView.update(this.correcoes);
+        this.correcoesView.update(this.correcoesValor);
     }
     adiciona() {
-        const correcao = Correcao.criaDe(this.inputData.value, this.inputCurso.value, this.inputNomeAluno.value, this.inputNumModulo.value, this.inputTipo.value, this.inputResposta.value, this.inputValor.value, this.inputObservacao.value);
+        const correcao = Correcao.criaDe(this.inputData.value, this.inputCurso.value, this.inputNomeAluno.value, this.inputNumModulo.value, this.inputTipo.value, this.inputResposta.value, this.inputObservacao.value);
         this.correcaoService.inserir(correcao)
             .then(correcaoInserida => {
             console.log(correcaoInserida);
             const correcaoInseridaType = correcaoInserida;
-            this.correcoes.adiciona(correcaoInseridaType);
+            this.correcoesValor.adiciona(correcaoInseridaType);
             this.limparFormulario();
             this.atualizaView();
         });
@@ -35,9 +35,9 @@ export class CorrecaoController {
         this.correcaoService.obterTodas()
             .then(correcoes => {
             for (let c of correcoes) {
-                this.correcoes.adiciona(c);
+                this.correcoesValor.adiciona(c);
             }
-            this.correcoesView.update(this.correcoes);
+            this.correcoesView.update(this.correcoesValor);
         });
     }
     atualizaDataComHoje() {
@@ -60,13 +60,12 @@ export class CorrecaoController {
         this.inputCurso.value = '';
         this.inputNumModulo.value = '';
         this.inputTipo.value = '';
-        this.inputValor.value = '';
         this.inputResposta.value = '';
         this.inputObservacao.value = '';
         this.inputData.focus();
     }
     atualizaView() {
-        this.correcoesView.update(this.correcoes);
+        this.correcoesView.update(this.correcoesValor);
         this.mensagemView.update("Correção adicionada com sucesso!");
     }
 }

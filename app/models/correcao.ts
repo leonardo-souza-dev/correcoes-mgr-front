@@ -6,7 +6,6 @@ export class Correcao {
                 public readonly numModulo: number, 
                 public readonly tipo: string, 
                 public readonly resposta: string, 
-                public readonly valor: number, 
                 public readonly observacao: string) {
         }
 
@@ -16,13 +15,11 @@ export class Correcao {
                          numModuloString: string, 
                          tipoString: string, 
                          respostaString: string, 
-                         valorString: string, 
                          observacaoString: string): Correcao {
         const data = new Date(dataString.replace(/-/g, ','))
-        const valor = parseInt(valorString)
         const numModulo = parseFloat(numModuloString)
         
         return new Correcao(data, cursoString, nomeAlunoString, numModulo,
-             tipoString, respostaString, valor, observacaoString)
+             tipoString, respostaString, observacaoString)
     }
 }

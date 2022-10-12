@@ -15,7 +15,14 @@
 
     <form class="form">
         <div class="form-row">
-            <div class="form-group col-md-12">          
+            <div class="form-group col-md-12">
+                <label for="nome-aluno">Nome</label>
+                <input type="text" id="nome-aluno" placeholder="Nome do aluno" class="form-control" required/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
                 <label for="data">Data</label>
                 <div class="input-group">
                     <input type="date" id="data" class="form-control" required autofocus/>
@@ -24,17 +31,8 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="nome-aluno">Nome</label>
-                <input type="text" id="nome-aluno" placeholder="Nome do aluno" class="form-control" required/>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-4">          
+            <div class="form-group col-md-3">
                 <label for="curso">Curso</label>
                 <select class="form-control" id="curso" required>
                     <option>Unreal Engine</option>
@@ -42,11 +40,11 @@
                     <option>Javascript</option>
                 </select>
             </div>
-            <div class="form-group col-md-2">
-                <label for="num-modulo">Número do módulo</label>
+            <div class="form-group col-md-1">
+                <label for="num-modulo">Módulo</label>
                 <input type="number" min="1" step="1" id="num-modulo" class="form-control" value="1" required/>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-5">
                 <label for="tipo">Tipo</label>
                 <select class="form-control" id="tipo" required>
                     <option>Tarefa do módulo</option>
@@ -54,21 +52,12 @@
                     <option>Fórum (Messages)</option>
                 </select>
             </div>
-            <div class="form-group col-md-2">
-                <label for="valor">Valor</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                    <span class="input-group-text">R$</span>
-                    </div>
-                    <input id="valor" type="number" class="form-control"  min="1" step="1" value="15" required />
-                </div>
-            </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-12">   
                 <label for="resposta">Resposta</label>
-                <textarea id="resposta" cols="40" rows="5" class="form-control" required></textarea>
+                <textarea id="resposta" cols="40" rows="7" class="form-control" required></textarea>
             </div>
         </div>
 
