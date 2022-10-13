@@ -6,7 +6,7 @@ export class CorrecoesView extends View {
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>Data</th><th>Curso</th><th>Nome do Aluno</th><th>Número do Módulo</th><th>Tipo</th><th>Resposta</th><th>Valor</th>
+                        <th>Data</th><th>Curso</th><th>Nome do Aluno</th><th>Número do Módulo</th><th>Tipo</th><th>Resposta</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,7 +19,6 @@ export class CorrecoesView extends View {
                                 <td>${correcao.numModulo}</td>
                                 <td>${correcao.tipo}</td>
                                 <td>${correcao.resposta}</td>
-                                <td>${correcao.valor}</td>
                             </tr>
                         `;
         }).join('')}
