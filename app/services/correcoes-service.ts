@@ -1,7 +1,7 @@
 import { Correcao } from "../models/correcao.js"
 
 export class CorrecoesService {
-    
+
     public async inserir(correcao: Correcao):Promise<Correcao> {
 
         console.log(correcao)
@@ -42,13 +42,15 @@ export class CorrecoesService {
         const res = await fetch('https://localhost:7223/correcoes', init);
         const dados = await res.json() as Correcao[];
         return dados.map(dado => {
-            return new Correcao(new Date(dado.data),
-                                dado.curso,
-                                dado.nomeAluno,
-                                dado.numModulo,
-                                dado.tipo,
-                                dado.resposta,
-                                dado.observacao);
+            return new Correcao(
+                new Date(dado.data),
+                dado.curso,
+                dado.nomeAluno,
+                dado.numModulo,
+                dado.tipo,
+                dado.resposta,
+                dado.observacao
+            );
         });
     }
 }

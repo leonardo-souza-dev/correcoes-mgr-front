@@ -8,8 +8,12 @@ export class Correcao {
         this.resposta = resposta;
         this.observacao = observacao;
     }
-    static criaDe(dataString, cursoString, nomeAlunoString, numModuloString, tipoString, respostaString, observacaoString) {
+    static criaDe(dataString, horarioString, cursoString, nomeAlunoString, numModuloString, tipoString, respostaString, observacaoString) {
         const data = new Date(dataString.replace(/-/g, ','));
+        const hora = horarioString.split(':')[0];
+        const minuto = horarioString.split(':')[1];
+        data.setHours(Number(hora));
+        data.setMinutes(Number(minuto));
         const numModulo = parseFloat(numModuloString);
         return new Correcao(data, cursoString, nomeAlunoString, numModulo, tipoString, respostaString, observacaoString);
     }

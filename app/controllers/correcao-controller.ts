@@ -7,6 +7,7 @@ import { CorrecoesService } from "../services/correcoes-service.js"
 
 export class CorrecaoController {
     private inputData: HTMLInputElement
+    private inputHorario: HTMLInputElement
     private inputCurso: HTMLInputElement
     private inputNomeAluno: HTMLInputElement
     private inputNumModulo: HTMLInputElement
@@ -22,6 +23,7 @@ export class CorrecaoController {
 
     constructor(){
         this.inputData = <HTMLInputElement>document.querySelector('#data')
+        this.inputHorario = <HTMLInputElement>document.querySelector('#horario')
         this.inputCurso = <HTMLInputElement>document.querySelector('#curso')
         this.inputNomeAluno = <HTMLInputElement>document.querySelector('#nome-aluno')
         this.inputNumModulo = <HTMLInputElement>document.querySelector('#num-modulo')
@@ -33,20 +35,20 @@ export class CorrecaoController {
     }
 
     public adiciona(): void{
-        const correcao = Correcao.criaDe(this.inputData.value, 
-                                         this.inputCurso.value, 
-                                         this.inputNomeAluno.value, 
-                                         this.inputNumModulo.value, 
-                                         this.inputTipo.value, 
-                                         this.inputResposta.value, 
-                                         this.inputObservacao.value)
+        const correcao = Correcao.criaDe(
+            this.inputData.value, 
+            this.inputHorario.value, 
+            this.inputCurso.value, 
+            this.inputNomeAluno.value, 
+            this.inputNumModulo.value, 
+            this.inputTipo.value, 
+            this.inputResposta.value, 
+            this.inputObservacao.value)
 
         this.correcaoService.inserir(correcao)
-            .then(correcaoInserida  => { 
-                console.log(correcaoInserida)
-                const correcaoInseridaType = <Correcao>correcaoInserida 
-                this.correcoes.adiciona(correcaoInseridaType)
-                this.limparFormulario()    
+            .then(correcaoInserida  => {
+                this.correcoes.adiciona(<Correcao>correcaoInserida)
+                this.limparFormulario()
                 this.atualizaView()
             })
     }
@@ -70,8 +72,19 @@ export class CorrecaoController {
         var diaFix = dia.toString().length == 1 ? `0${dia}` : dia
         var dataHojeStr = `${ano}-${mesFix}-${diaFix}`
 
-        console.log(dataHojeStr)
         this.inputData.value = dataHojeStr
+    }
+
+    public atualizaHorarioComAgora(): void {
+        var dataHoje = new Date()
+        var hora = dataHoje.getHours()
+        var minuto = dataHoje.getMinutes()
+
+        this.inputHorario.value = `${hora}:${minuto}`
+    }
+
+    public atualizaComboCursoObrigatoriedade(): boolean {
+        return this.inputCurso.value == 'Selecione'
     }
 
     private ehDiaUtil(data: Date){
